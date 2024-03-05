@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\levelController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
@@ -32,3 +34,5 @@ Route::prefix('kategori')->group(function () {
 });
 Route::get('/user/{id}/nama/{name}', [UserController::class, 'ShowUser']);
 Route::get('/penjualan', [PenjualanController::class, 'index']);
+Route::get('/level', [levelController::class, 'index']);
+Route::get('/kategori', [KategoriController::class, 'index']);
