@@ -11,6 +11,7 @@
 <h1>form ubah data user</h1>
 <form action="/user/ubah_simpan/{{ $data->user_id }}" method="post">
     {{ csrf_field() }}
+
     <label>username</label>
     <input type="text" name="username" placeholder="masukkan username" value="{{ $data->username }}">
     <br>
