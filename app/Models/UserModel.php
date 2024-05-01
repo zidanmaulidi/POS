@@ -1,23 +1,24 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class UserModel extends Model implements AuthenticatableContract
+class UserModel extends Authenticatable implements JWTSubject
 {
-    use Authenticatable;
-    protected $table = 'm_user';
-    public $timestamps = false;
-    protected $primaryKey = 'user_id';
-    protected $fillable = ['level_id', 'username', 'nama', 'password'];
-
-    public function level(): BelongsTo
+    public function getJWTIdentifier()
     {
-        return $this->belongsTo(levelModel::class, 'level_id', 'level_id');
+        return $this->getKey();
     }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+    protected $table = 'm_user';
+    protected $primaryKey = 'user_id';
+    protected $fillable = [
+        'username', 'nama', 'password', 'level_id'
+    ];
 }
