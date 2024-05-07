@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
+Route::post('/register1', App\Http\Controllers\Api\RegisterController::class)->name('register1');
 Route::post('/login', App\Http\Controllers\Api\LoginController::class)->name('login');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -53,6 +54,7 @@ Route::delete('kategoris/{kategori}', [KategoriController::class, 'destroy']);
 
 Route::get('barangs', [BarangController::class, 'index']);
 Route::post('barangs', [BarangController::class, 'store']);
+Route::post('barangs1', [BarangController::class, 'store']);
 Route::get('barangs/{barang}', [BarangController::class, 'show']);
 Route::put('barangs/{barang}', [BarangController::class, 'update']);
 Route::delete('barangs/{barang}', [BarangController::class, 'destroy']);

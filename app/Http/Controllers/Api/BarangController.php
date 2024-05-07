@@ -14,8 +14,22 @@ class BarangController extends Controller
     }
     public function store(Request $request)
     {
-        $barang = BarangModel::create($request->all());
-        return response()->json($barang, 201);
+        // $barang = BarangModel::create($request->all());
+        // return response()->json($barang, 201);
+        $barang = BarangModel::create([
+            'kategori_id' => $request->kategori_id,
+            'barang_kode' => $request->barang_kode,
+            'barang_nama' => $request->barang_nama,
+            'harga_beli' => $request->harga_beli,
+            'harga_jual' => $request->harga_jual,
+            'image' => $request->image->HashName(),
+        ]);
+        if ($barang) {
+            return response()->json([
+                'success' => true,
+                'barang' => $barang,
+            ], 201);
+        }
     }
     public function show(BarangModel $barang)
     {
